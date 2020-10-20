@@ -4,7 +4,7 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 
-
+var stone;
 
 function preload()
 {
@@ -24,7 +24,7 @@ function setup() {
 	mango3=new Mango(1010,140,30);
 	mango4=new Mango(1000,70,30);
 	mango5=new Mango(1070,50,30);
-	stone=new Stone(180,340,50,50);
+	stone=new stone(180,340,50,50);
 
 	Engine.run(engine);
   
@@ -47,6 +47,7 @@ function draw() {
   mouseDragged();
   mouseReleased();
   keyPressed();
+  fly();
 }
 function mouseDragged() {
 
@@ -54,7 +55,8 @@ function mouseDragged() {
 }
 function mouseReleased() {
 
-    boy.fly(null);
+    fly(); {
+		this.sling.bodyA = null;
 }
 
 function detectollision(lstone,lmango) {
@@ -82,4 +84,4 @@ function keyPressed() {
 }
 
 
-
+}
