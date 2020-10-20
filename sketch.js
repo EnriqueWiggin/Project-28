@@ -24,7 +24,7 @@ function setup() {
 	mango3=new Mango(1010,140,30);
 	mango4=new Mango(1000,70,30);
 	mango5=new Mango(1070,50,30);
-	stone=new stone(180,340,50,50);
+	stone=new Stone(180,340,50,50);
 
 	Engine.run(engine);
   
@@ -42,7 +42,43 @@ function draw() {
   mango5.display();
   stone.display();
   drawSprites();
- 
+
+  detectCollision();
+  mouseDragged();
+  mouseReleased();
+  keyPressed();
+}
+function mouseDragged() {
+
+   Matter.Body.setPosition(stone.body,{x:mouseX,y:mouseY})
+}
+function mouseReleased() {
+
+    boy.fly(null);
+}
+
+function detectollision(lstone,lmango) {
+	mango.body.position=lmango.body.position
+	stone.body.position=lstone.body.position
+	
+	var distance=dist(stoneBodyPosition.x, stoneBodyPostion.y, mangoBodyPosition.x, mangoBodyPostion.y)
+	   if(distance<=lmango.r+lstone.r)
+	   {
+		   Matter.Body.setStatic(lmango.body, false);
+	     }
+	   }
+	detectollision(stone,mango1);
+	detectollision(stone,mango2);
+	detectollision(stone,mango3);
+	detectollision(stone,mango4);
+	detectollision(stone,mango5);
+
+function keyPressed() {
+    if(keyCode === 32){
+		slingshot.attach(bird.body);
+		Matter.Body.setPosition(stone.body, {x:235, y:420})
+		launcherObject.attach(stone.body);
+    }
 }
 
 
