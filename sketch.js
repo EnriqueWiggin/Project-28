@@ -3,8 +3,8 @@ const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
-
-var stone;
+const Constraint = Matter.Constraint;
+var treeObj;
 
 function preload()
 {
@@ -24,8 +24,10 @@ function setup() {
 	mango3=new Mango(1010,140,30);
 	mango4=new Mango(1000,70,30);
 	mango5=new Mango(1070,50,30);
-	stone=new stone(180,340,50,50);
-
+	stone=new Stone(235,420,30); 
+	treeObj=new Tree(1050,580);
+	slingShot=new SlingShot(stone.body, {x:235, y:420});
+	groundObject=new Ground(width/2,600,width,20);
 	Engine.run(engine);
   
 }
@@ -33,21 +35,24 @@ function setup() {
 
 function draw() {
   rectMode(CENTER);
-  background(0);
+  background("white");
   image(boy ,200,340,200,300);
+  treeObj.display();
   mango1.display();
   mango2.display();
   mango3.display();
   mango4.display();
   mango5.display();
   stone.display();
+  slingShot.display();
+  groundObject.display();
   drawSprites();
 
-  detectCollision();
-  mouseDragged();
-  mouseReleased();
-  keyPressed();
-  fly();
+  detectollision(stone,mango1);
+  detectollision(stone,mango2);
+  detectollision(stone,mango3);
+  detectollision(stone,mango4);
+  detectollision(stone,mango5);
 }
 function mouseDragged() {
 
@@ -55,8 +60,8 @@ function mouseDragged() {
 }
 function mouseReleased() {
 
-    fly(); {
-		this.sling.bodyA = null;
+    slingShot.fly(); {
+		//this.sling.bodyA = null;
 }
 
 function detectollision(lstone,lmango) {
