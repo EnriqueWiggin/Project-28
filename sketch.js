@@ -4,6 +4,7 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 const Constraint = Matter.Constraint;
+
 var treeObj;
 
 function preload()
@@ -48,11 +49,6 @@ function draw() {
   groundObject.display();
   drawSprites();
 
-  detectollision(stone,mango1);
-  detectollision(stone,mango2);
-  detectollision(stone,mango3);
-  detectollision(stone,mango4);
-  detectollision(stone,mango5);
 }
 function mouseDragged() {
 
@@ -64,7 +60,7 @@ function mouseReleased() {
 		//this.sling.bodyA = null;
 }
 
-function detectollision(lstone,lmango) {
+function detectCollision(lstone,lmango) {
 	mango.body.position=lmango.body.position
 	stone.body.position=lstone.body.position
 	
@@ -74,11 +70,6 @@ function detectollision(lstone,lmango) {
 		   Matter.Body.setStatic(lmango.body, false);
 	     }
 	   }
-	detectollision(stone,mango1);
-	detectollision(stone,mango2);
-	detectollision(stone,mango3);
-	detectollision(stone,mango4);
-	detectollision(stone,mango5);
 
 function keyPressed() {
     if(keyCode === 32){
