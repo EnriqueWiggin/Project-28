@@ -47,6 +47,11 @@ function draw() {
   stone.display();
   slingShot.display();
   groundObject.display();
+  detectCollision(stone,mango1)
+  detectCollision(stone,mango2)
+  detectCollision(stone,mango3)
+  detectCollision(stone,mango4)
+  detectCollision(stone,mango5)
   drawSprites();
 
 }
@@ -55,16 +60,15 @@ function mouseDragged() {
    Matter.Body.setPosition(stone.body,{x:mouseX,y:mouseY})
 }
 function mouseReleased() {
-
-    slingShot.fly(); {
-		//this.sling.bodyA = null;
+	slingShot.fly();
 }
 
+
 function detectCollision(lstone,lmango) {
-	mango.body.position=lmango.body.position
-	stone.body.position=lstone.body.position
+	mangoBodyPosition=lmango.body.position
+	stoneBodyPosition=lstone.body.position
 	
-	var distance=dist(stoneBodyPosition.x, stoneBodyPostion.y, mangoBodyPosition.x, mangoBodyPostion.y)
+	var distance=dist(stoneBodyPosition.x, stoneBodyPosition.y, mangoBodyPosition.x, mangoBodyPosition.y)
 	   if(distance<=lmango.r+lstone.r)
 	   {
 		   Matter.Body.setStatic(lmango.body, false);
@@ -80,4 +84,4 @@ function keyPressed() {
 }
 
 
-}
+
